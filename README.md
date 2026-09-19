@@ -43,32 +43,6 @@ In modern wireless communications, efficient spectrum usage is critical. This pr
 
 ## Model Architecture
 
-The proposed `myModel` follows a **U-Net encoder-decoder** design enhanced with:
-
-### Encoder (Contracting Path)
-| Stage | Input Channels | Output Channels | Output Size |
-|-------|---------------|-----------------|-------------|
-| Encoder Block 1 (ResidualBlock) | 3 | 8 | 8 × 256 × 256 |
-| MaxPool 2×2 | 8 | 8 | 8 × 128 × 128 |
-| Encoder Block 2 (ResidualBlock) | 8 | 16 | 16 × 128 × 128 |
-| MaxPool 2×2 | 16 | 16 | 16 × 64 × 64 |
-| Encoder Block 3 (ResidualBlock) | 16 | 32 | 32 × 64 × 64 |
-| MaxPool 2×2 | 32 | 32 | 32 × 32 × 32 |
-| **Bottleneck** (ResidualBlock + Dilation) | 32 | 64 | 64 × 32 × 32 |
-| Channel Attention + Dropout | 64 | 64 | 64 × 32 × 32 |
-
-### Decoder (Expansive Path)
-Each decoder stage performs: **Upsample → Concatenate with skip connection (Conv 1×1 + BN) → ResidualBlock → Dropout**
-
-| Stage | Skip From | Output Channels | Output Size |
-|-------|-----------|-----------------|-------------|
-| Decoder Stage 3 | Encoder Block 3 | 32 | 32 × 64 × 64 |
-| Decoder Stage 2 | Encoder Block 2 | 16 | 16 × 128 × 128 |
-| Decoder Stage 1 | Encoder Block 1 | 8 | 8 × 256 × 256 |
-| **Output** (Conv 1×1) | — | N_classes | N_classes × 256 × 256 |
-
-### Building Blocks
-
 <p align="center">
   <img src="assets/residual_block.png" alt="Residual Block" width="45%"/>
   &nbsp;&nbsp;&nbsp;
