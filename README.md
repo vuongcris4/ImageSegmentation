@@ -4,7 +4,7 @@
   <img src="assets/model_architecture.png" alt="Model Architecture" width="100%"/>
 </p>
 
-A lightweight U-Net variant with **Residual Blocks**, **Channel Attention**, and **Dilated Convolutions** for pixel-level classification of 5G NR and LTE signals on spectrogram images. The model achieves **99.6% accuracy** and **99.2% mIoU** with only **~282K trainable parameters**.
+A lightweight U-Net variant with **Residual Blocks**, **Channel Attention**, and **Dilated Convolutions** for pixel-level classification of 5G NR and LTE signals on spectrogram images. The model achieves **98.2% accuracy** and **95.1% mIoU** with only **~282K trainable parameters**.
 
 ---
 
